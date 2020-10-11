@@ -17,5 +17,15 @@ Docker compose + DockerFile
 - Puis on active le cron avec :
 * service cron start
 
-#3ème Partie:
+# 3ème Partie
+-------------
+- Depuis le bash du docker on va dans le dossier: etc/lograte.d/
+- Nouveau fichier backup-daily
+- Paramètres dans le fichier:
+  - rotate 5
+  - daily
+  - missingok
+  - compresscmd /bin/bzip2
+  - notiempty
+- Pour finir on peut tester avec : logrotate -f /etc/logrotate.d/backup-daily
 
