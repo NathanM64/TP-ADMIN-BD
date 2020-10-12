@@ -25,7 +25,8 @@ Docker compose + DockerFile
   - rotate 5
   - daily
   - missingok
-  - compresscmd /bin/bzip2
-  - notiempty
+  - compressext /bzip2
+  - 	mysqldump -uroot -ppassword --all-databases | bzip -c > /backups/dump.sql.bz2
+  - endpostrotate
 - Pour finir on peut tester avec : logrotate -f /etc/logrotate.d/backup-daily
 
