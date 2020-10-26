@@ -1,20 +1,19 @@
-# Mariadb Clusters
+### TP7 CLusters
+## 1ère étape
 
-## Installation
+Après avoir créé les 3 mariadb:
 
-Pour créer un cluster de 3 nodes, on va devoir faire de la config.
+ - Dans `docker-compose.yml`:
 
-Dans notre `docker-compose.yml`, pour le premier node il va falloir override la commande de démarrage de mariadb.
+   - Dans le premier node on rajoute : `command: --wsrep-new-cluster`
 
-On rajoute donc : `command: --wsrep-new-cluster`
+ - Pour chaque nodes on met la config `/etc/mysql/conf.d/galera.cnf` et on leur donne un non distinct
 
-Pour tous les nodes il va falloir mettre sur les containers cette config dans `/etc/mysql/conf.d/galera.cnf` et changer le node name pour chaque conteneur.
-
+- On obtient: 
 ````conf
 [mysqld]
 wsrep_node_address="first.localhost"
 
-# cette ligne à modifier pour les autres containers
 wsrep_node_name="node1"
 wsrep_cluster_address="gcomm://first.localhost,second.localhost,third.localhost"
 
@@ -26,9 +25,9 @@ innodb_doublewrite=1
 query_cache_size=0
 wsrep_on=ON
 ````
+### 2ème étape
 
-
-Pour démarrer le cluster il faut utiliser une ristourne et bind le fichier `/var/lib/mysql/grastate.dat` du premier container.
+  - Afin de lancer le cluster on link : `/var/lib/mysql/grastate.dat` au premier container (node1).
 
 ````conf
 # GALERA saved state
@@ -36,14 +35,11 @@ version: 2.1
 uuid:    1664c21c-1217-11eb-8160-0ecd0cb2593d
 seqno:   -1
 
-# cette valeur doit être mise à 1 avant chaque démarrage
+# Ce paramètre doit être égual à 1 avant chanque lancement
 safe_to_bootstrap: 1
 ````
-
-Les noeuds vont se connecter entre eux.
-
-On peut vérifier :
-
+  - Ensuite au lancement les nodes se connectent entre eux.
+On verifie grace à la commande suivant:
 ````
 MariaDB [ok]> SHOW GLOBAL STATUS LIKE 'wsrep_cluster_size';
 +--------------------+-------+
