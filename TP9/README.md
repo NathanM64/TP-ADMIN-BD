@@ -12,7 +12,7 @@ On peut maintenant commencer à se créer des dashboards.
 
 ## 1er dashboard
 
-(graph-screenshots/dashboard1.png)
+![Premier Dashboard](graph-screenshots/dashboard1.png)
 
 Ce dashboard est créé à partir de trois éléments :
 
@@ -22,7 +22,7 @@ Ce dashboard est créé à partir de trois éléments :
 
 ## 2ème dashboard
 
-(graph-screenshots/dashboard2.png)
+![Deuxième Dashboard](graph-screenshots/dashboard2.png)
 
 Ce dashboard est créé à partir de 4 éléments :
 
