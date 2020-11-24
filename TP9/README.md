@@ -2,7 +2,7 @@
 
 ## Réglages
 
-- On reprend exactement le même docker-compose quand dans le TP8 mais on y ajoute l'image graphana. Les fichiers prometheus et mysql-exporter ne change pas.
+- On reprend exactement le même docker-compose que dans le TP8 mais on y ajoute l'image grafana. Les fichiers prometheus et mysql-exporter ne change pas.
 
 - En suite, comme d'habitude : `docker-compose up -d`
 - On peut donc se rendre à l'addresse `localhost:3000` puis ce connecter avec les identifiants admin/admin.
